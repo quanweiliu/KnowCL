@@ -27,7 +27,7 @@ def get_data(args):
     img = img[:, :, pad_width:img.shape[2]-pad_width]
     height, width, bands = img.shape
     halving_line = bands // 2
-    print("halving_line", halving_line)
+    # print("halving_line", halving_line)
 
     img1 = img[:, :, :halving_line]
     img2 = img[:, :, halving_line:]
@@ -35,11 +35,11 @@ def get_data(args):
     img2, pca = data_reader.apply_PCA(img2, num_components=args.components)
 
     gt = np.pad(data_gt, pad_width=pad_width, mode="constant", constant_values=(0))
-    print(img.shape, img1.shape, img2.shape, gt.shape)
+    # print(img.shape, img1.shape, img2.shape, gt.shape)
 
     train_gt, test_gt = sample_gt(gt, train_num=args.train_num, 
                                   train_ratio=args.train_ratio, mode=args.split_type)
-    print(train_gt.shape, test_gt.shape)
+    # print(train_gt.shape, test_gt.shape)
 
     if args.show_gt:
         # data_reader.draw(data_gt, args.result_dir + "/" + args.dataset_name + "data_gt", save_img=True)
