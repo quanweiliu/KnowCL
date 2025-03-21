@@ -19,7 +19,7 @@ from loadData import data_pipe, data_reader
 from loadData.split_data import HyperX
 from loadData.dataAugmentation import DataAugmentationDINO
 
-from utils import util, KNN, SVM, trainer, tester, tester
+from utils import util, KNN, SVM, trainer, tester
 from models import model, vision_transformer, automaticWeightedLoss
 
 
@@ -47,10 +47,8 @@ with open(args.result_dir + '/args.json', 'w') as fid:
     json.dump(args.__dict__, fid, indent=2)
 
 
-
-
 # data_pipe.set_deterministic(seed = 666)
-args.print_data_info = False
+args.print_data_info = True
 args.show_gt = False
 args.remove_zero_labels = True
 args.train_ratio = 1
@@ -206,10 +204,8 @@ else:
     epoch_start = 0
 
 
-# # # # # # # # # # # # # # # # fine tune and Linear test # # # # # # # # # # # # # #
+# # # # # # # # # # # # # # # # save the best result # # # # # # # # # # # # # #
 
-
-# save the best result
 # for k in range(10, 51, 5):
 for k in range(5,6):
     args.knn_k = k
@@ -386,7 +382,8 @@ fintune_test_time = time.time() - fintune_test_time
 
 
 with open(os.path.join(args.result_dir, "log_final.csv"), 'a+', encoding='gbk') as f:
-    row=[["epoch", epoch, 
+    row=[["\nfinetune\n",
+          "epoch", epoch, 
         "\nclassification\n", classification,
         "\nkappa", kappa,
         "\nfintune_time", round(fintune_time, 2),
