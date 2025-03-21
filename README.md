@@ -7,4 +7,3 @@
 A Universal Knowledge Embedded Contrastive Learning Framework for Hyperspectral Image Classification
 
 
-**Noting**: I will update the train.py file when this paper is published successfully.
