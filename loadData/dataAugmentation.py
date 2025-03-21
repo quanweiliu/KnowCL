@@ -44,7 +44,7 @@ class DataAugmentationDINO(object):
     def __init__(self, randCrop=28, local_crops_number=0):
         # first global crop
         self.global_transfo1 = transforms.Compose([
-                transforms.RandomResizedCrop(randCrop),
+                transforms.RandomResizedCrop(randCrop, antialias=True, interpolation=InterpolationMode.BICUBIC),
                 transforms.RandomHorizontalFlip(p=0.5),
                 transforms.RandomVerticalFlip(p=0.5),
                 # transforms.RandomRotation(90),
@@ -54,7 +54,7 @@ class DataAugmentationDINO(object):
                 ])
         # second global crop
         self.global_transfo2 = transforms.Compose([
-                transforms.RandomResizedCrop(randCrop),
+                transforms.RandomResizedCrop(randCrop, antialias=True, interpolation=InterpolationMode.BICUBIC),
                 transforms.RandomHorizontalFlip(p=0.5),
                 transforms.RandomVerticalFlip(p=0.5),
                 # transforms.RandomRotation(90)
@@ -66,7 +66,7 @@ class DataAugmentationDINO(object):
         # transformation for the local small crops
         self.local_crops_number = local_crops_number
         self.local_transfo = transforms.Compose([
-                transforms.RandomResizedCrop(24),
+                transforms.RandomResizedCrop(24, antialias=True, interpolation=InterpolationMode.BICUBIC),
                 transforms.RandomHorizontalFlip(p=0.5),
                 transforms.RandomVerticalFlip(p=0.5),
 
