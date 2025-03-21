@@ -9,7 +9,8 @@ def get_args():
 
     # datasets
     parser.add_argument('--dataset_name', default="India Pines", type=str, help='network backbone')
-    parser.add_argument('--path_data', type=str, default="/home/liuquanwei/code/datasets/")
+    # parser.add_argument('--path_data', type=str, default="/home/leo/DatasetSMD/")
+    parser.add_argument('--path_data', type=str, default="/home/leo/DatasetSMD/")
     parser.add_argument('--print-data-info', action='store_true', default=False)
     parser.add_argument('--data_info_start', default=1, type=int)
     parser.add_argument('--remove_zero_labels', action='store_true', default=True)
@@ -50,7 +51,8 @@ def get_args():
 
     # log
     parser.add_argument('--plot_loss_curve', action='store_true', default=False)
-    parser.add_argument('--log_interval', default=1, type=int)
+    parser.add_argument('--log_interval1', default=1, type=int)
+    parser.add_argument('--log_interval2', default=1, type=int)
     parser.add_argument('--resume', default='' , type=str, help='continue training')
     parser.add_argument('--device', default='cuda' if torch.cuda.is_available() else 'cpu', type=str, help='device')
 
