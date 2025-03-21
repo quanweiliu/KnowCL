@@ -4,8 +4,8 @@ from torch import nn
 import torch.nn.functional as F
 
 # train for one epoch to learn unique features
-def train(epoch, net, contra_head, net_head, awl, data_loader, memory_loader, \
-          test_loader, train_optimizer, args):
+def train(epoch, net, contra_head, net_head, awl, criterion, data_loader, \
+          memory_loader, test_loader, train_optimizer, args):
     net.train()
     contra_head.train()
     net_head.train()
@@ -14,13 +14,12 @@ def train(epoch, net, contra_head, net_head, awl, data_loader, memory_loader, \
     total_num = 0
     train_correct = 0
     test_correct = 0
-    criterion = nn.CrossEntropyLoss()
     train_bar = tqdm(enumerate(zip(data_loader, memory_loader)))
     # train_bar = tqdm(enumerate(data_loader))
     
     for step, ((pos_1, pos_2, target), (pos, pos_, label)) in train_bar:
         # torch.Size([128, 100, 28, 28]) torch.Size([128, 100, 28, 28]) torch.Size([128])
-        # print(pos_1.shape, pos_2.shape, target.shape) 
+        # print(pos_1.shape, pos_2.shape, target.shape, label.shape) 
         pos_1 = [im.cuda(non_blocking=True) for im in pos_1]
         pos_2 = [im.cuda(non_blocking=True) for im in pos_2]
 
@@ -84,7 +83,7 @@ def train(epoch, net, contra_head, net_head, awl, data_loader, memory_loader, \
                                 epoch, args.epochs, round(average_loss, 4), round(args.lambda_contra*total_contra_loss.item(), 4), 
                                 round(args.lambda_super*loss_super.item(), 4), round(train_accuracy.item(), 4)))
 
-    if epoch % args.log_interval == 0:
+    if epoch % args.log_interval1 == 0:
         net.eval()
         net_head.eval()
         for t_pos, t_pos_, t_label in test_loader:
