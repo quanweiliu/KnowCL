@@ -6,7 +6,7 @@
 
 
 
-If this is helpful, please kindly cite this paper (A Universal Knowledge Embedded Contrastive Learning Framework for Hyperspectral Image Classification)[https://arxiv.org/abs/2404.01673]!
+If this is helpful, please kindly cite this paper [A Universal Knowledge Embedded Contrastive Learning Framework for Hyperspectral Image Classification](https://arxiv.org/abs/2404.01673) !
 
 
 ```
